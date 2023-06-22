@@ -33,6 +33,11 @@ export default createStore({
 
       setTodosLocalStorage(state.todoList);
     },
+
+    CLEAR_EDITTODO: (state, payload) => {
+      state.editTodo = null;
+    },
+
     SAVE_TODO: (state, payload) => {
       let find = state.todoList.find((item) => item.id === payload.id);
       find.title = payload.title;
@@ -43,6 +48,10 @@ export default createStore({
       state.editTodo = state.todoList.find((item) => item.id === payload);
     },
     DELETE_TODO: (state, payload) => {
+      const isEditTodoRemoved = payload === state.editTodo.id;
+      if (isEditTodoRemoved) {
+        state.editTodo = null;
+      }
       state.todoList = state.todoList.filter((item) => item.id !== payload);
       setTodosLocalStorage(state.todoList);
     },
