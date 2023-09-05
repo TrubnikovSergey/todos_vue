@@ -28,14 +28,9 @@ export default {
       this.todoTitle = e.target.value;
     },
     save() {
-      // const isTodoExist = this.store.state.todoList.find((item) => item.id === this.$store.state.editTodo.id);
-      // console.log("isTodoExist", isTodoExist);
-      // if (isTodoExist) {
-      //   this.$store.commit("SAVE_TODO", { id: this.$store.state.editTodo.id, title: this.todoTitle });
-      // } else {
-      //   this.$store.commit("CLEAR_EDITTODO");
-      // }
-      this.$store.commit("SAVE_TODO", { id: this.$store.state.editTodo.id, title: this.todoTitle });
+      const title = this.todoTitle ? this.todoTitle : this.$store.state.editTodo.title;
+      console.log("title", title);
+      this.$store.commit("SAVE_TODO", { id: this.$store.state.editTodo.id, title });
       this.todoTitle = "";
     },
     add() {

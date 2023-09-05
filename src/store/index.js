@@ -48,7 +48,7 @@ export default createStore({
       state.editTodo = state.todoList.find((item) => item.id === payload);
     },
     DELETE_TODO: (state, payload) => {
-      const isEditTodoRemoved = payload === state.editTodo.id;
+      const isEditTodoRemoved = payload === state.editTodo && state.editTodo.id;
       if (isEditTodoRemoved) {
         state.editTodo = null;
       }

@@ -1,15 +1,15 @@
 <template>
   <h1>List todos:</h1>
   <div class="wrapper-todoList">
-    <button @click="clearAllTodo">Delete all todos</button>
+    <button @click="clearAllTodo" :disabled="Boolean($store.state.editTodo)">Delete all todos</button>
     <ul class="todoList" v-for="item in todoList">
       <li class="todoItem">
         <div class="titleTodo">
           {{ item.title }}
         </div>
         <div class="btnTodo">
-          <button @click="editItem(item.id)">Edit</button>
-          <button @click="deleteItem(item.id)">Delete</button>
+          <button @click="editItem(item.id)" :disabled="Boolean($store.state.editTodo)">Edit</button>
+          <button @click="deleteItem(item.id)" :disabled="Boolean($store.state.editTodo)">Delete</button>
         </div>
       </li>
       <hr />
